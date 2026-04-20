@@ -43,6 +43,41 @@ You may change the path and domain of the Artisan UI routes to suit your need us
 
 Additionally, you may use this configuration file to update the middleware of these routes. By default, the `web` middleware group is used as well as the `AuthorizeArtisanUI` middleware which protects the Artisan UI routes using the callback provided to the `ArtisanUI::auth` method above. Feel free to override that middleware for more custom authorization logic but remember that, without it, the Artisan UI routes will be available to everyone!
 
+## Configure command whitelist
+
+You may restrict which commands are visible and executable from Artisan UI by setting `command_whitelist` in `config/artisan-ui.php`.
+
+```php
+'command_whitelist' => [
+    'update_game_list',
+],
+```
+
+When `command_whitelist` is `null`, all artisan commands remain available.
+
+Whitelist entries also support prefix wildcard patterns:
+
+```php
+'command_whitelist' => [
+    'cache:*',
+    'queue:*',
+],
+```
+
+You may also blacklist specific commands that should never be visible or executable from the UI:
+
+```php
+'command_blacklist' => [
+    'migrate:*',
+    'db:*',
+    'tinker',
+],
+```
+
+Wildcard patterns are prefix-based and should end with `*`.
+
+When both are configured, blacklist rules take precedence over whitelist rules.
+
 ## Update assets
 
 If you've recently updated the package and something doesn't look right, it might be because the CSS file for the package is not up-to-date and needs to be re-published. Worry not, simply run the `artisan-ui:install` command again and you're good to go. You can even do that from the UI now! 🤯

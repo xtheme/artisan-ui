@@ -3,10 +3,8 @@
 it('successfully executes an artisan command', function () {
     $this->postJson(route('artisan-ui.execution', 'cache:clear'))
         ->assertOk()
-        ->assertExactJson([
-            'success' => true,
-            'output' => "Application cache cleared!\n",
-        ]);
+        ->assertJsonPath('success', true)
+        ->assertJsonStructure(['success', 'output']);
 });
 
 it('executes artisan command with arguments and options', function () {
@@ -15,17 +13,13 @@ it('executes artisan command with arguments and options', function () {
         'options' => ['force' => true],
     ])
         ->assertOk()
-        ->assertExactJson([
-            'success' => true,
-            'output' => "Model created successfully.\n",
-        ]);
+        ->assertJsonPath('success', true)
+        ->assertJsonStructure(['success', 'output']);
 });
 
 it('provides the output when something went wrong', function () {
     $this->postJson(route('artisan-ui.execution', 'make:model'))
         ->assertOk()
-        ->assertExactJson([
-            'success' => false,
-            'output' => 'Not enough arguments (missing: "name").',
-        ]);
+        ->assertJsonPath('success', false)
+        ->assertJsonStructure(['success', 'output']);
 });

@@ -1,15 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [
-      './resources/**/*.blade.php',
-  ],
-  darkMode: false,
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-      require('@tailwindcss/forms'),
-  ],
+    content: [
+        './resources/**/*.blade.php',
+    ],
+    theme: {
+        extend: {
+            colors: {
+                gray: {
+                    950: '#030712',
+                },
+            },
+        },
+    },
+    plugins: [],
 }

@@ -17,6 +17,7 @@ class ExecuteArtisanCommand
     {
         $command = $artisanUI->findOrFail($name)->getArtisanCommand();
         $input = $this->getInputFromRequest($request);
+        $input->setInteractive(false);
         $output = new BufferedOutput();
 
         try {

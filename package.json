@@ -6,20 +6,14 @@
     "test": "tests"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.3.3",
-    "autoprefixer": "^10.2.6",
-    "laravel-mix": "^6.0.19",
-    "postcss": "^8.3.2",
-    "tailwindcss": "^2.1.4"
+    "@alpinejs/collapse": "^3.14.8",
+    "@tailwindcss/forms": "^0.5.10",
+    "tailwindcss": "^3.4.17"
   },
   "scripts": {
-    "dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production"
+    "dev": "tailwindcss -i resources/css/artisan-ui.css -o public/artisan-ui.css --watch",
+    "prod": "tailwindcss -i resources/css/artisan-ui.css -o public/artisan-ui.css --minify",
+    "build": "npm run prod"
   },
   "repository": {
     "type": "git",

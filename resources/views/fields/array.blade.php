@@ -1,42 +1,39 @@
 @php /** @var Lorisleiva\ArtisanUI\CommandInput $input */ @endphp
 
 <div>
-    <label class="flex text-sm text-gray-700 space-x-2">
-        <div class="font-medium">{{ $input->getName() }}</div>
+    <label class="flex items-center gap-2 text-sm mb-1.5">
+        <span class="font-medium" style="color:#0f172a;">{{ $input->getName() }}</span>
         @if($input->isRequired())
-            <div class="text-gray-500">•</div>
-            <div class="text-gray-500">required</div>
+            <span class="text-[10px] font-semibold uppercase tracking-wide text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1.5 py-0.5">{{ __('artisan-ui::labels.required') }}</span>
         @endif
-        <div class="text-gray-500">•</div>
-        <div class="text-gray-500">array</div>
+        <span class="text-[10px] font-semibold uppercase tracking-wide text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded px-1.5 py-0.5">{{ __('artisan-ui::labels.array') }}</span>
     </label>
-    <div class="mt-1 -space-y-px">
+    <div class="space-y-2">
         <template x-for="(value, index) in [...({{ $input->getAbsoluteKey() }} || []), '']">
-            <div class="relative">
+            <div class="relative flex items-center gap-2">
                 <input
                     :value="value"
                     type="text"
-                    class="relative focus:z-10 shadow-sm focus:ring-gray-600 focus:border-gray-600 block w-full sm:text-sm border-gray-300 pr-10"
-                    :class="{
-                        'rounded-t-md': index === 0,
-                        'rounded-b-md': index === ([...({{ $input->getAbsoluteKey() }} || []), ''].length - 1),
-                    }"
-                    placeholder="{{ $input->getDefaultToDisplay() }}"
+                    class="flex-1 rounded-lg px-3 py-2 text-sm transition focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                    style="background:#ffffff;border:1px solid #cbd5e1;color:#0f172a;"
+                    placeholder="{{ $input->getDefaultToDisplay() ?: __('artisan-ui::labels.enter_value') }}"
                     @input="event => { updateArrayValue('{{ $input->getType() }}', '{{ $input->getName() }}', event.target.value, index) }"
                 >
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center z-20" x-show="index < ([...({{ $input->getAbsoluteKey() }} || []), ''].length - 1)">
-                    <button class="text-gray-500 hover:text-gray-700" @click="deleteArrayValue('{{ $input->getType() }}', '{{ $input->getName() }}', index)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+                <button
+                    x-show="index < ([...({{ $input->getAbsoluteKey() }} || []), ''].length - 1)"
+                    @click="deleteArrayValue('{{ $input->getType() }}', '{{ $input->getName() }}', index)"
+                    class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-md text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition"
+                    title="{{ __('artisan-ui::labels.remove') }}"
+                >
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <div x-show="index >= ([...({{ $input->getAbsoluteKey() }} || []), ''].length - 1)" class="w-7 h-7 flex-shrink-0"></div>
             </div>
         </template>
     </div>
     @if(!! $input->getDescription())
-        <p class="mt-2 text-sm text-gray-500">
-            {{ $input->getDescription() }}
-        </p>
+        <p class="mt-1.5 text-xs" style="color:#475569;">{{ $input->getDescription() }}</p>
     @endif
 </div>

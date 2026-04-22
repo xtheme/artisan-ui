@@ -1,6 +1,6 @@
 {
     "name": "xtheme/artisan-ui",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Run your artisan commands by pressing buttons.",
     "keywords": [
         "laravel",

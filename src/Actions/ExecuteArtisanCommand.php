@@ -11,6 +11,7 @@ use Lorisleiva\ArtisanUI\ArtisanUI;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
 class ExecuteArtisanCommand
@@ -20,7 +21,7 @@ class ExecuteArtisanCommand
         $command = $artisanUI->findOrFail($name)->getArtisanCommand();
         $input = $this->getInputFromRequest($request);
         $input->setInteractive(false);
-        $output = new BufferedOutput();
+        $output = new BufferedOutput(OutputInterface::VERBOSITY_NORMAL, decorated: true);
 
         try {
             $returnCode = $command->run($input, $output);

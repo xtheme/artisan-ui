@@ -1,4 +1,11 @@
 @extends('artisan-ui::layout')
+@push('head')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5/lib/xterm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10/lib/addon-fit.js"></script>
+@endpush
 @php /** @var Lorisleiva\ArtisanUI\Command $command */ @endphp
 
 @section('content')
@@ -68,7 +75,7 @@
 
         {{-- Options --}}
         @if($command->hasOptions())
-        <div x-data="{ open: false }" class="mb-8 rounded-xl border overflow-hidden" style="border-color:#e2e8f0;background:#ffffff;">
+        <div x-data="{ open: true }" class="mb-8 rounded-xl border overflow-hidden" style="border-color:#e2e8f0;background:#ffffff;">
             @include('artisan-ui::partials.accordion-button', [
                 'title' => __('artisan-ui::labels.options'),
                 'count' => $command->getOptionCount(),
@@ -157,9 +164,9 @@
                     </div>
                     <button @click="clear" class="text-xs transition-colors" style="color:#94a3b8;">{{ __('artisan-ui::labels.clear') }}</button>
                 </div>
-                <pre class="p-5 text-[13px] font-mono leading-6 whitespace-pre-wrap overflow-x-auto overflow-y-auto min-h-20 max-h-[28rem]"
-                     :style="state === 'success' ? 'color:#86efac;background:#020617' : 'color:#fca5a5;background:#020617'"
-                     x-text="output || @js(__('artisan-ui::labels.no_output'))"></pre>
+                <div class="p-2.5" style="background:#020617;">
+                    <div id="xterm-output"></div>
+                </div>
             </div>
         </div>
 
@@ -174,8 +181,48 @@
             options: {!! $command->getOptionsAsJson() !!},
             route: '{{ route('artisan-ui.execution', $command->getName()) }}',
             output: '',
+            term: null,
+            fitAddon: null,
             fallbackErrorMessage: @js(__('artisan-ui::labels.something_went_wrong')),
             confirmExecutionMessage: @js(__('artisan-ui::labels.confirm_execute_prompt')),
+
+            initTerminal() {
+                if (this.term) return
+                this.fitAddon = new FitAddon.FitAddon()
+                this.term = new Terminal({
+                    convertEol: true,
+                    disableStdin: true,
+                    scrollback: 5000,
+                    fontSize: 12,
+                    lineHeight: 1.3,
+                    fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+                    theme: {
+                        background: '#020617',
+                        foreground: '#cbd5e1',
+                        cursor: '#020617',
+                        green: '#34d399',
+                        brightGreen: '#86efac',
+                        yellow: '#fbbf24',
+                        brightYellow: '#fde68a',
+                        red: '#f87171',
+                        brightRed: '#fca5a5',
+                        cyan: '#67e8f9',
+                        brightCyan: '#a5f3fc',
+                        blue: '#60a5fa',
+                        brightBlue: '#93c5fd',
+                    },
+                })
+                this.term.loadAddon(this.fitAddon)
+                const el = document.getElementById('xterm-output')
+                this.term.open(el)
+
+                // Refit whenever the container gains actual dimensions (e.g. after x-show reveals it)
+                const ro = new ResizeObserver(() => {
+                    if (el.offsetWidth > 0) this.fitAddon.fit()
+                })
+                ro.observe(el)
+                window.addEventListener('resize', () => this.fitAddon && this.fitAddon.fit())
+            },
 
             execute() {
                 if (this.state === 'loading') return
@@ -188,14 +235,22 @@
             onSuccess(response) {
                 this.output = response.data.output || ''
                 this.state = response.data.success ? 'success' : 'error'
+                this.$nextTick(() => this.renderOutput(this.output))
             },
             onFailure(error) {
                 this.output = error.response?.data?.message || this.fallbackErrorMessage
                 this.state = 'error'
+                this.$nextTick(() => this.renderOutput(this.output))
+            },
+            renderOutput(text) {
+                this.initTerminal()
+                this.term.reset()
+                this.term.write(text || @js(__('artisan-ui::labels.no_output')))
             },
             clear() {
                 this.state = 'idle'
                 this.output = ''
+                if (this.term) this.term.reset()
             },
             updateArrayValue(type, name, value, index) {
                 const arr = this[type][name] || []

@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5/lib/xterm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10/lib/addon-fit.js"></script>
 @endpush
-@php /** @var Lorisleiva\ArtisanUI\Command $command */ @endphp
+@php /** @var Xtheme\ArtisanUI\Command $command */ @endphp
 
 @section('content')
 <div class="flex-1 overflow-y-auto">

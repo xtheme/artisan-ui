@@ -1,9 +1,9 @@
 <?php
 
-namespace Lorisleiva\ArtisanUI\Tests;
+namespace Xtheme\ArtisanUI\Tests;
 
-use Lorisleiva\ArtisanUI\ArtisanUIServiceProvider;
-use Lorisleiva\ArtisanUI\Facades\ArtisanUI;
+use Xtheme\ArtisanUI\ArtisanUIServiceProvider;
+use Xtheme\ArtisanUI\Facades\ArtisanUI;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

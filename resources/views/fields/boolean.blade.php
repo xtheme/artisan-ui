@@ -1,4 +1,4 @@
-@php /** @var Lorisleiva\ArtisanUI\CommandOption $input */ @endphp
+@php /** @var Xtheme\ArtisanUI\CommandOption $input */ @endphp
 @php
     $sizeTokens = [
         'sm' => [

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI\Actions;
+namespace Xtheme\ArtisanUI\Actions;
 
 use Illuminate\View\View;
-use Lorisleiva\ArtisanUI\ArtisanUI;
+use Xtheme\ArtisanUI\ArtisanUI;
 
 class ShowArtisanCommand
 {

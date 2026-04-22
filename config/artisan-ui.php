@@ -1,6 +1,6 @@
 <?php
 
-use Lorisleiva\ArtisanUI\Http\Middleware\AuthorizeArtisanUI;
+use Xtheme\ArtisanUI\Http\Middleware\AuthorizeArtisanUI;
 
 return [
     /*

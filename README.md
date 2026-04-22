@@ -1,15 +1,15 @@
 # 🧰 Artisan UI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/lorisleiva/artisan-ui.svg)](https://packagist.org/packages/lorisleiva/artisan-ui)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/lorisleiva/artisan-ui/Tests?label=tests)](https://github.com/lorisleiva/artisan-ui/actions?query=workflow%3ATests+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/lorisleiva/artisan-ui.svg)](https://packagist.org/packages/lorisleiva/artisan-ui)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/xtheme/artisan-ui.svg)](https://packagist.org/packages/xtheme/artisan-ui)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/xtheme/artisan-ui/Tests?label=tests)](https://github.com/xtheme/artisan-ui/actions?query=workflow%3ATests+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/xtheme/artisan-ui.svg)](https://packagist.org/packages/xtheme/artisan-ui)
 
 ![artisan-ui](https://raw.githubusercontent.com/xtheme/artisan-ui/main/art/home.png)
 
 ## Installation
 
 ```sh
-composer require lorisleiva/artisan-ui
+composer require xtheme/artisan-ui
 php artisan artisan-ui:install
 ```
 
@@ -26,7 +26,7 @@ By default, Artisan UI is only available on local environments. You can provide 
 The following example allows any user on local environments but only admin users on other environments.
 
 ```php
-use Lorisleiva\ArtisanUI\Facades\ArtisanUI;
+use Xtheme\ArtisanUI\Facades\ArtisanUI;
 
 ArtisanUI::auth(function ($request) {
     if (app()->environment('local')) {

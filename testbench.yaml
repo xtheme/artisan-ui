@@ -1,0 +1,6 @@
+providers:
+  - Xtheme\ArtisanUI\ArtisanUIServiceProvider
+
+env:
+  APP_KEY: base64:RU5OZWLyClRpbCgDVs5mxmTL59zhbLcHx2hc6pD+pTw=
+

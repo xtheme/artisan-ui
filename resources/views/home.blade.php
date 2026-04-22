@@ -1,6 +1,6 @@
 @extends('artisan-ui::layout')
 @php /** @var Illuminate\Support\Collection $commands */ @endphp
-@php /** @var Lorisleiva\ArtisanUI\Command $command */ @endphp
+@php /** @var Xtheme\ArtisanUI\Command $command */ @endphp
 
 @section('content')
 <div class="flex-1 overflow-y-auto">

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI\Facades;
+namespace Xtheme\ArtisanUI\Facades;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
-use Lorisleiva\ArtisanUI\ArtisanUI as ConcreteArtisanUI;
+use Xtheme\ArtisanUI\ArtisanUI as ConcreteArtisanUI;
 
 /**
  * @see ConcreteArtisanUI

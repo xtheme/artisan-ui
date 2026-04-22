@@ -1,5 +1,5 @@
 <?php
 
-use Lorisleiva\ArtisanUI\Tests\TestCase;
+use Xtheme\ArtisanUI\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

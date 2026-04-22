@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI;
+namespace Xtheme\ArtisanUI;
 
 use Illuminate\Support\Facades\Route;
-use Lorisleiva\ArtisanUI\Commands\ArtisanUIInstallCommand;
+use Xtheme\ArtisanUI\Commands\ArtisanUIInstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

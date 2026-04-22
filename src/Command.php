@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI;
+namespace Xtheme\ArtisanUI;
 
 use Illuminate\Console\Command as ArtisanCommand;
 use Illuminate\Support\Collection;

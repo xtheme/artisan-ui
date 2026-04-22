@@ -1,4 +1,4 @@
-@php /** @var Lorisleiva\ArtisanUI\CommandInput $input */ @endphp
+@php /** @var Xtheme\ArtisanUI\CommandInput $input */ @endphp
 
 <div>
     <label class="flex items-center gap-2 text-sm mb-1.5">

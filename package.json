@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lorisleiva/artisan-ui.git"
+    "url": "git+https://github.com/xtheme/artisan-ui.git"
   },
   "author": "Loris Leiva",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lorisleiva/artisan-ui/issues"
+    "url": "https://github.com/xtheme/artisan-ui/issues"
   },
-  "homepage": "https://github.com/lorisleiva/artisan-ui#readme"
+  "homepage": "https://github.com/xtheme/artisan-ui#readme"
 }

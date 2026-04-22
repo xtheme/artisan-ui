@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI;
+namespace Xtheme\ArtisanUI;
 
 class CommandArgument extends CommandInput
 {

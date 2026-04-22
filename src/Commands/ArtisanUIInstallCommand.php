@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI\Commands;
+namespace Xtheme\ArtisanUI\Commands;
 
 use Illuminate\Console\Command;
 

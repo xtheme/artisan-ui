@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Lorisleiva\ArtisanUI\Actions\ExecuteArtisanCommand;
-use Lorisleiva\ArtisanUI\Actions\ShowArtisanCommand;
-use Lorisleiva\ArtisanUI\Actions\ShowArtisanUI;
+use Xtheme\ArtisanUI\Actions\ExecuteArtisanCommand;
+use Xtheme\ArtisanUI\Actions\ShowArtisanCommand;
+use Xtheme\ArtisanUI\Actions\ShowArtisanUI;
 
 
 Route::group([

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Lorisleiva\ArtisanUI\Tests;
+namespace Xtheme\ArtisanUI\Tests;
 
-use Lorisleiva\ArtisanUI\ArtisanUI;
+use Xtheme\ArtisanUI\ArtisanUI;
 
 it('closes the accordion when there are no arguments', function () {
     $artisanCommand = (new ArtisanUI())->find('config:cache');

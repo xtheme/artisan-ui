@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use Lorisleiva\ArtisanUI\Facades\ArtisanUI;
+use Xtheme\ArtisanUI\Facades\ArtisanUI;
 
 function setEnvironment(string $environment)
 {

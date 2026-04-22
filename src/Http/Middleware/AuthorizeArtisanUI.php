@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI\Http\Middleware;
+namespace Xtheme\ArtisanUI\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Lorisleiva\ArtisanUI\Facades\ArtisanUI;
+use Xtheme\ArtisanUI\Facades\ArtisanUI;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthorizeArtisanUI

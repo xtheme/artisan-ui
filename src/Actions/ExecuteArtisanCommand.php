@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Lorisleiva\ArtisanUI\Actions;
+namespace Xtheme\ArtisanUI\Actions;
 
 use Illuminate\Console\Command;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Lorisleiva\ArtisanUI\ArtisanUI;
+use Xtheme\ArtisanUI\ArtisanUI;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;

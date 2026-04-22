@@ -29,7 +29,9 @@ return [
 	'disabled' => '未啟用',
 	'toggle_option' => '切換 :name',
 	'activates_option' => '啟用 ":name" 選項。',
-	'confirm_before_run' => '確認參數後，點擊下方按鈕執行指令。',
-	'confirm_execute_prompt' => '確定要執行這個指令嗎？',
+        'confirm_before_run' => '確認參數後，點擊下方按鈕執行指令。',
+        'confirm_execute_prompt' => '確定要執行這個指令嗎？',
+        'confirm' => '確認執行',
+        'cancel' => '取消',
 ];
 

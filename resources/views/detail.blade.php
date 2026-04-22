@@ -44,7 +44,7 @@
 
         {{-- Arguments --}}
         @if($command->hasArguments())
-        <div x-data="{ open: {{ $command->shouldOpenArgumentsAccordionOnLoad() ? 'true' : 'false' }} }"
+        <div x-data="{ open: {{ $command->hasArguments() ? 'true' : 'false' }} }"
              class="mb-3 rounded-xl border overflow-hidden" style="border-color:#e2e8f0;background:#ffffff;">
             @include('artisan-ui::partials.accordion-button', [
                 'title' => __('artisan-ui::labels.arguments'),
@@ -115,21 +115,49 @@
                         <p class="text-sm" style="color:#475569;">{{ __('artisan-ui::labels.confirm_before_run') }}</p>
                     </div>
 
-                    <button
-                        @click="execute"
-                        :disabled="state === 'loading'"
-                        class="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors focus:outline-none"
-                        style="background:#22c55e;color:#ffffff;border:1px solid #16a34a;"
-                    >
-                        <svg x-cloak x-show="state === 'loading'" class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                        </svg>
-                        <svg x-show="state !== 'loading'" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5.14v14l11-7-11-7z"/>
-                        </svg>
-                        <span x-text="state === 'loading' ? @js(__('artisan-ui::labels.running')) : @js(__('artisan-ui::labels.run_command'))">{{ __('artisan-ui::labels.run_command') }}</span>
-                    </button>
+                    <div class="flex items-center gap-2">
+                        {{-- Confirm / Cancel (shown when confirming) --}}
+                        <template x-if="state === 'confirming'">
+                            <div class="flex items-center gap-2 w-full sm:w-auto">
+                                <button
+                                    @click="execute"
+                                    class="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors focus:outline-none"
+                                    style="background:#22c55e;color:#ffffff;border:1px solid #16a34a;"
+                                >
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    {{ __('artisan-ui::labels.confirm') }}
+                                </button>
+                                <button
+                                    @click="state = 'idle'"
+                                    class="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors focus:outline-none"
+                                    style="background:#ffffff;color:#64748b;border:1px solid #e2e8f0;"
+                                >
+                                    {{ __('artisan-ui::labels.cancel') }}
+                                </button>
+                            </div>
+                        </template>
+
+                        {{-- Run command button (default / loading) --}}
+                        <template x-if="state !== 'confirming'">
+                            <button
+                                @click="state = 'confirming'"
+                                :disabled="state === 'loading'"
+                                class="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors focus:outline-none"
+                                style="background:#22c55e;color:#ffffff;border:1px solid #16a34a;"
+                            >
+                                <svg x-cloak x-show="state === 'loading'" class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                                </svg>
+                                <svg x-show="state !== 'loading'" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5.14v14l11-7-11-7z"/>
+                                </svg>
+                                <span x-text="state === 'loading' ? @js(__('artisan-ui::labels.running')) : @js(__('artisan-ui::labels.run_command'))">{{ __('artisan-ui::labels.run_command') }}</span>
+                            </button>
+                        </template>
+                    </div>
                 </div>
 
                 <div class="mt-3 flex items-center gap-4 min-h-5">
@@ -184,7 +212,6 @@
             term: null,
             fitAddon: null,
             fallbackErrorMessage: @js(__('artisan-ui::labels.something_went_wrong')),
-            confirmExecutionMessage: @js(__('artisan-ui::labels.confirm_execute_prompt')),
 
             initTerminal() {
                 if (this.term) return
@@ -226,7 +253,6 @@
 
             execute() {
                 if (this.state === 'loading') return
-                if (! window.confirm(this.confirmExecutionMessage)) return
                 this.state = 'loading'
                 axios.post(this.route, { arguments: this.arguments, options: this.options })
                     .then(r => this.onSuccess(r))
@@ -251,8 +277,7 @@
                 this.state = 'idle'
                 this.output = ''
                 if (this.term) this.term.reset()
-            },
-            updateArrayValue(type, name, value, index) {
+            },            updateArrayValue(type, name, value, index) {
                 const arr = this[type][name] || []
                 arr[index] = value
                 this[type][name] = arr

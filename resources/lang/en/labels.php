@@ -31,5 +31,7 @@ return [
     'activates_option' => 'Activates the ":name" option.',
     'confirm_before_run' => 'Review your parameters, then click the button below to run the command.',
     'confirm_execute_prompt' => 'Are you sure you want to run this command?',
+    'confirm' => 'Confirm',
+    'cancel' => 'Cancel',
 ];
 

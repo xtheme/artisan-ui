@@ -180,19 +180,19 @@
 
         {{-- Output --}}
         <div x-cloak x-show="state === 'success' || state === 'error'" class="mt-6">
-            <div class="rounded-xl overflow-hidden border" style="border-color:#1e293b;background:#020617;box-shadow:0 10px 24px rgba(2,6,23,.18);">
-                <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color:#1e293b;background:#0b1220;">
+            <div class="rounded-xl overflow-hidden border" style="border-color:#30363d;background:#0d1117;box-shadow:0 10px 24px rgba(2,6,23,.18);">
+                <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color:#30363d;background:#161b22;">
                     <div class="flex items-center gap-3">
                         <div class="flex items-center gap-1.5">
                             <span class="w-2.5 h-2.5 rounded-full" style="background:#fb7185;"></span>
                             <span class="w-2.5 h-2.5 rounded-full" style="background:#fbbf24;"></span>
                             <span class="w-2.5 h-2.5 rounded-full" style="background:#34d399;"></span>
                         </div>
-                        <span class="text-xs font-mono" style="color:#94a3b8;">{{ __('artisan-ui::labels.output') }}</span>
+                        <span class="text-xs font-mono" style="color:#8b949e;">{{ __('artisan-ui::labels.output') }}</span>
                     </div>
-                    <button @click="clear" class="text-xs transition-colors" style="color:#94a3b8;">{{ __('artisan-ui::labels.clear') }}</button>
+                    <button @click="clear" class="text-xs transition-colors" style="color:#8b949e;">{{ __('artisan-ui::labels.clear') }}</button>
                 </div>
-                <div class="p-2.5" style="background:#020617;">
+                <div class="p-2.5" style="background:#0d1117;">
                     <div id="xterm-output"></div>
                 </div>
             </div>
@@ -224,19 +224,25 @@
                     lineHeight: 1.3,
                     fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
                     theme: {
-                        background: '#020617',
-                        foreground: '#cbd5e1',
-                        cursor: '#020617',
-                        green: '#34d399',
-                        brightGreen: '#86efac',
-                        yellow: '#fbbf24',
-                        brightYellow: '#fde68a',
-                        red: '#f87171',
-                        brightRed: '#fca5a5',
-                        cyan: '#67e8f9',
-                        brightCyan: '#a5f3fc',
-                        blue: '#60a5fa',
-                        brightBlue: '#93c5fd',
+                        background: '#0d1117',
+                        foreground: '#e6edf3',
+                        cursor: '#0d1117',
+                        black: '#484f58',
+                        brightBlack: '#6e7681',
+                        white: '#b1bac4',
+                        brightWhite: '#e6edf3',
+                        green: '#3fb950',
+                        brightGreen: '#56d364',
+                        yellow: '#d29922',
+                        brightYellow: '#e3b341',
+                        red: '#f85149',
+                        brightRed: '#ff7b72',
+                        cyan: '#39c5cf',
+                        brightCyan: '#56d4dd',
+                        blue: '#58a6ff',
+                        brightBlue: '#79c0ff',
+                        magenta: '#bc8cff',
+                        brightMagenta: '#d2a8ff',
                     },
                 })
                 this.term.loadAddon(this.fitAddon)

@@ -2,9 +2,9 @@
 
 namespace Xtheme\ArtisanUI\Tests;
 
+use Orchestra\Testbench\TestCase as Orchestra;
 use Xtheme\ArtisanUI\ArtisanUIServiceProvider;
 use Xtheme\ArtisanUI\Facades\ArtisanUI;
-use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

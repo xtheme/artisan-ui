@@ -7,12 +7,12 @@ namespace Xtheme\ArtisanUI\Actions;
 use Illuminate\Console\Command;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Xtheme\ArtisanUI\ArtisanUI;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
+use Xtheme\ArtisanUI\ArtisanUI;
 
 class ExecuteArtisanCommand
 {

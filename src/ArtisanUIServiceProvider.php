@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Xtheme\ArtisanUI;
 
 use Illuminate\Support\Facades\Route;
-use Xtheme\ArtisanUI\Commands\ArtisanUIInstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Xtheme\ArtisanUI\Commands\ArtisanUIInstallCommand;
 
 class ArtisanUIServiceProvider extends PackageServiceProvider
 {

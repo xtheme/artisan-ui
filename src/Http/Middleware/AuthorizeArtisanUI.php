@@ -6,8 +6,8 @@ namespace Xtheme\ArtisanUI\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Xtheme\ArtisanUI\Facades\ArtisanUI;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Xtheme\ArtisanUI\Facades\ArtisanUI;
 
 class AuthorizeArtisanUI
 {

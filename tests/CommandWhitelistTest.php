@@ -57,4 +57,3 @@ it('does not execute blacklisted commands even if whitelisted', function () {
     $this->postJson(route('artisan-ui.execution', 'cache:clear'))
         ->assertNotFound();
 });
-

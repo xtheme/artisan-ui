@@ -37,10 +37,10 @@ class ArtisanUIServiceProvider extends PackageServiceProvider
                 abort_unless(file_exists($path), 404);
 
                 $mimeTypes = [
-                    'css'  => 'text/css',
-                    'js'   => 'application/javascript',
-                    'png'  => 'image/png',
-                    'svg'  => 'image/svg+xml',
+                    'css' => 'text/css',
+                    'js' => 'application/javascript',
+                    'png' => 'image/png',
+                    'svg' => 'image/svg+xml',
                 ];
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
                 $mime = $mimeTypes[$ext] ?? 'application/octet-stream';

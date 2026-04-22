@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI\Commands;
 
 use Illuminate\Console\Command;
@@ -9,7 +11,7 @@ class ArtisanUIInstallCommand extends Command
     public $signature = 'artisan-ui:install';
     public $description = 'Publishes all necessary assets and configurations';
 
-    public function handle()
+    public function handle(): int
     {
         $this->call('vendor:publish', [
             '--tag' => ['artisan-ui-assets', 'artisan-ui-config'],
@@ -17,5 +19,7 @@ class ArtisanUIInstallCommand extends Command
         ]);
 
         $this->info('All done!');
+
+        return self::SUCCESS;
     }
 }

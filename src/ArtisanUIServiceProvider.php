@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI;
 
 use Illuminate\Support\Facades\Route;
@@ -21,12 +23,12 @@ class ArtisanUIServiceProvider extends PackageServiceProvider
             ->hasCommand(ArtisanUIInstallCommand::class);
     }
 
-    public function packageRegistered()
+    public function packageRegistered(): void
     {
         $this->app->singleton(ArtisanUI::class);
     }
 
-    public function packageBooted()
+    public function packageBooted(): void
     {
         // In local/development, serve assets directly from the package's public/ directory
         // without requiring vendor:publish to be run.

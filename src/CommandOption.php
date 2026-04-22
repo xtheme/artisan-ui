@@ -1,12 +1,12 @@
 <?php
 
-namespace Lorisleiva\ArtisanUI;
+declare(strict_types=1);
 
-use JetBrains\PhpStorm\Pure;
+namespace Lorisleiva\ArtisanUI;
 
 class CommandOption extends CommandInput
 {
-    #[Pure] public function isRequired(): bool
+    public function isRequired(): bool
     {
         return $this->input->isValueRequired();
     }

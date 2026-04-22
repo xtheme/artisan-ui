@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI\Actions;
 
 use Illuminate\View\View;

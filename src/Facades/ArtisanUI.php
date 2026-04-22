@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI\Facades;
 
 use Closure;
@@ -14,7 +16,7 @@ use Lorisleiva\ArtisanUI\ArtisanUI as ConcreteArtisanUI;
  */
 class ArtisanUI extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return ConcreteArtisanUI::class;
     }

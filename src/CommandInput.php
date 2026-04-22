@@ -1,44 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI;
 
-use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class CommandInput
 {
-    protected InputArgument | InputOption $input;
+    protected InputArgument|InputOption $input;
 
-    public function __construct(InputArgument | InputOption $input)
+    public function __construct(InputArgument|InputOption $input)
     {
         $this->input = $input;
     }
 
-    #[Pure] abstract public function isRequired(): bool;
+    abstract public function isRequired(): bool;
     abstract public function getType(): string;
 
-    #[Pure] public function getName(): string
+    public function getName(): string
     {
         return $this->input->getName();
     }
 
-    #[Pure] public function getDescription(): ?string
+    public function getDescription(): ?string
     {
         return $this->input->getDescription();
     }
 
-    #[Pure] public function getDefault(): string | array | null
+    public function getDefault(): string|array|null
     {
         return $this->input->getDefault();
     }
 
-    #[Pure] public function getDefaultToDisplay(): string
+    public function getDefaultToDisplay(): string
     {
         return is_string($this->getDefault()) ? $this->getDefault() : '';
     }
 
-    #[Pure] public function isArray(): bool
+    public function isArray(): bool
     {
         return $this->input->isArray();
     }

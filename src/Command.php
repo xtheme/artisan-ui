@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lorisleiva\ArtisanUI;
 
 use Illuminate\Console\Command as ArtisanCommand;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use JetBrains\PhpStorm\Pure;
 
 class Command
 {
@@ -16,12 +17,12 @@ class Command
         $this->artisanCommand = $artisanCommand;
     }
 
-    #[Pure] public function getName(): string
+    public function getName(): string
     {
         return $this->artisanCommand->getName();
     }
 
-    #[Pure] public function getNamespace(): ?string
+    public function getNamespace(): ?string
     {
         if (! Str::contains($this->getName(), ':')) {
             return null;
@@ -30,7 +31,7 @@ class Command
         return Str::before($this->getName(), ':');
     }
 
-    #[Pure] public function getDescription(): string
+    public function getDescription(): string
     {
         return $this->artisanCommand->getDescription();
     }
